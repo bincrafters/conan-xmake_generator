@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from conans.model.conan_generator import Generator
-from conans import ConanFile, tools, load
+from conans import ConanFile
 
 
 class XmakeGenerator(ConanFile):
@@ -25,14 +25,14 @@ class xmake(Generator):
 
     @property
     def content(self):
-        deps = prepare_xmake_deps(self.deps_build_info)
+        deps = XmakeDepsFormatter(self.deps_build_info)
         
         # TODO:    This generator spits out valid lua, but it's copied from 
-        #                the conan premake generator, and not xmake. 
-        #                I have started with this to demonstrate to xmake
-        #                maintainer so he can understand how the generator works
-        #                and see the output, and then make suggestions/corrections
-        #                via PR or email.  
+        # TODO:    the conan premake generator, and not xmake. 
+        # TODO:    I have started with this to demonstrate to xmake
+        # TODO:    maintainer so he can understand how the generator works
+        # TODO:    and see the output, and then make suggestions/corrections
+        # TODO:    via PR or email.  
         
         template = ('conan_includedirs{dep} = {{{deps.include_paths}}}\n'
                           'conan_libdirs{dep} = {{{deps.lib_paths}}}\n'
@@ -54,8 +54,7 @@ class xmake(Generator):
         sections.append(all_flags)
         template_deps = template + 'conan_rootpath{dep} = "{deps.rootpath}"\n'
 
-        for dep_name, dep_cpp_info in self.deps_build_info.dependencies:
-            deps = PremakeDeps(dep_cpp_info)
+        for dep_name, _ in self.deps_build_info.dependencies:
             dep_name = dep_name.replace("-", "_")
             dep_flags = template_deps.format(dep="_" + dep_name, deps=deps)
             sections.append(dep_flags)
@@ -73,23 +72,20 @@ class xmake(Generator):
 
         return "\n".join(sections)
 
-def prepare_xmake_deps(deps_cpp_info):
+class XmakeDepsFormatter(object):
 
-        deps = {}
-
-        deps.include_paths = ",\n".join('"%s"' % p.replace("\\", "/")
+    def __init__(self, deps_cpp_info):
+        self.include_paths = ",\n".join('"%s"' % p.replace("\\", "/")
                                         for p in deps_cpp_info.include_paths)
-        deps.lib_paths = ",\n".join('"%s"' % p.replace("\\", "/")
+        self.lib_paths = ",\n".join('"%s"' % p.replace("\\", "/")
                                     for p in deps_cpp_info.lib_paths)
-        deps.bin_paths = ",\n".join('"%s"' % p.replace("\\", "/")
+        self.bin_paths = ",\n".join('"%s"' % p.replace("\\", "/")
                                     for p in deps_cpp_info.bin_paths)
-        deps.libs = ", ".join('"%s"' % p for p in deps_cpp_info.libs)
-        deps.defines = ", ".join('"%s"' % p for p in deps_cpp_info.defines)
-        deps.cppflags = ", ".join('"%s"' % p for p in deps_cpp_info.cppflags)
-        deps.cflags = ", ".join('"%s"' % p for p in deps_cpp_info.cflags)
-        deps.sharedlinkflags = ", ".join('"%s"' % p for p in deps_cpp_info.sharedlinkflags)
-        deps.exelinkflags = ", ".join('"%s"' % p for p in deps_cpp_info.exelinkflags)
+        self.libs = ", ".join('"%s"' % p for p in deps_cpp_info.libs)
+        self.defines = ", ".join('"%s"' % p for p in deps_cpp_info.defines)
+        self.cppflags = ", ".join('"%s"' % p for p in deps_cpp_info.cppflags)
+        self.cflags = ", ".join('"%s"' % p for p in deps_cpp_info.cflags)
+        self.sharedlinkflags = ", ".join('"%s"' % p for p in deps_cpp_info.sharedlinkflags)
+        self.exelinkflags = ", ".join('"%s"' % p for p in deps_cpp_info.exelinkflags)
 
-        deps.rootpath = "%s" % deps_cpp_info.rootpath.replace("\\", "/")
-        
-        return deps
+        self.rootpath = "%s" % deps_cpp_info.rootpath.replace("\\", "/")
