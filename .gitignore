@@ -32,6 +32,7 @@
 __pycache__/*
 test_package/__pycache__/*
 test_package/build/*
+test_package/.xmake
 build/*
 *.pyc
 tmp/
