@@ -4,7 +4,8 @@ add_rules("mode.debug", "mode.release")
 
 -- add requires
 add_requires("CONAN::OpenSSL/1.0.2n@conan/stable", {alias = "openssl", config = {build_requires = "xmake_generator/0.1.0@tboox/testing",
-                                                                                 options = "OpenSSL:shared=True"}})
+                                                                                 options = "OpenSSL:shared=True",
+                                                                                 build = "all"}})
 
 -- add target
 target("test")
