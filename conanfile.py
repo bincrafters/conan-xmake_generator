@@ -29,15 +29,9 @@ class xmake(Generator):
 
         # get plat
         plat = str(self.settings.get_safe("os_build"))
-        if plat == "Macos":
-            plat = "macosx"
 
         # get mode
         mode = str(self.settings.get_safe("build_type"))
-        if mode == "Debug":
-            mode = "debug"
-        else:
-            mode = "release"
 
         # get arch
         arch = str(self.settings.get_safe("arch_build"))
