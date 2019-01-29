@@ -3,8 +3,8 @@
 add_rules("mode.debug", "mode.release")
 
 -- add requires
-add_requires("CONAN::zlib/1.2.11@conan/stable", {alias = "zlib", config = {build_requires = "xmake_generator/0.1.0@tboox/testing", build = "all"}})
-add_requires("CONAN::OpenSSL/1.0.2n@conan/stable", {alias = "openssl", config = {build_requires = "xmake_generator/0.1.0@tboox/testing",
+add_requires("CONAN::zlib/1.2.11@conan/stable", {alias = "zlib", config = {build_requires = "xmake_generator/0.1.0@bincrafters/testing", build = "all"}})
+add_requires("CONAN::OpenSSL/1.0.2n@conan/stable", {alias = "openssl", config = {build_requires = "xmake_generator/0.1.0@bincrafters/testing",
                                                                                  options = "OpenSSL:shared=True",
                                                                                  build = "all"}})
 
