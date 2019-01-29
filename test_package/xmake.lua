@@ -3,7 +3,7 @@
 add_rules("mode.debug", "mode.release")
 
 -- add requires
-add_requires("CONAN::zlib/1.2.11@conan/stable", {alias = "zlib", --[[debug = true,]] config = {build_requires = "xmake_generator/0.1.0@bincrafters/testing", build = "all"}})
+add_requires("CONAN::zlib/1.2.11@conan/stable", {alias = "zlib", debug = true, config = {build_requires = "xmake_generator/0.1.0@bincrafters/testing", build = "all"}})
 add_requires("CONAN::OpenSSL/1.0.2n@conan/stable", {alias = "openssl", config = {build_requires = "xmake_generator/0.1.0@bincrafters/testing",
                                                                                  options = "OpenSSL:shared=True",
                                                                                  build = "all"}})
@@ -19,7 +19,8 @@ target("test")
 
     -- on load
     on_load(function (target)
-        print(find_packages("CONAN::OpenSSL/1.0.2n@conan/stable", "CONAN::zlib/1.2.11@conan/stable"))
+        print(find_packages("CONAN::OpenSSL/1.0.2n@conan/stable"))
+        print(find_packages("CONAN::zlib/1.2.11@conan/stable", {mode = "debug"}))
     end)
 
     -- add packages
