@@ -2,7 +2,7 @@
 
 | Bintray | Windows | Linux & macOS |
 |:--------:|:---------:|:-----------------:|
-|[![Download](https://api.bintray.com/packages/bincrafters/public-conan/xmake_generator%3Abincrafters/images/download.svg) ](https://bintray.com/bincrafters/public-conan/xmake_generator%3Abincrafters/_latestVersion)|[![Build status](https://ci.appveyor.com/api/projects/status/github/bincrafters/conan-xmake_generator?svg=true)](https://ci.appveyor.com/project/bincrafters/conan-xmake_generator)|[![Build Status](https://travis-ci.org/bincrafters/conan-xmake_generator.svg)](https://travis-ci.org/bincrafters/conan-xmake_generator)|
+|[![Download](https://api.bintray.com/packages/bincrafters/public-conan/xmake_generator%3Abincrafters/images/download.svg) ](https://bintray.com/bincrafters/public-conan/xmake_generator%3Abincrafters/_latestVersion)|[![Build status](https://ci.appveyor.com/api/projects/status/github/bincrafters/conan-xmake_generator?svg=true)](https://ci.appveyor.com/project/bincrafters/conan-xmake_generator)|[![Build Status](https://travis-ci.com/bincrafters/conan-xmake_generator.svg)](https://travis-ci.com/bincrafters/conan-xmake_generator)|
 
 ## Conan.io Information
 
