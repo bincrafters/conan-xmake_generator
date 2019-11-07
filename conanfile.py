@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 from conans.model.conan_generator import Generator
 from conans import ConanFile
 
@@ -12,7 +9,6 @@ class XmakeGenerator(ConanFile):
     description = "Conan build generator for xmake build system"
     topics = ("conan", "generator", "xmake", "tboox")
     homepage = "https://github.com/tboox/xmake"
-    author = "Bincrafters <bincrafters@gmail.com>"
     license = "MIT"
     exports = ["LICENSE.md"]
 
