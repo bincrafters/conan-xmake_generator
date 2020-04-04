@@ -10,7 +10,6 @@ class XmakeGenerator(ConanFile):
     topics = ("conan", "generator", "xmake", "tboox")
     homepage = "https://github.com/tboox/xmake"
     license = "MIT"
-    exports = ["LICENSE.md"]
 
 
 class xmake(Generator):
